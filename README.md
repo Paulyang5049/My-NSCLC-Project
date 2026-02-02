@@ -24,6 +24,21 @@ This repository contains analysis code and derived outputs for a non–small cel
 4. Integration of pseudotime and communication outputs.
 5. Visualization and preparation of publication figures.
 
+## Required R Packages (Indicative)
+The following packages are commonly used in this workflow. Update this list to match the exact libraries loaded in the scripts.
+
+- Seurat
+- SingleCellExperiment
+- monocle3
+- slingshot
+- CellChat
+- ggplot2
+- patchwork
+- dplyr
+- tidyr
+- data.table
+- readr
+
 ## Reproducibility
 This repository contains derived artifacts in addition to scripts. To reproduce the analyses:
 1. Ensure R (and required packages) are installed.
