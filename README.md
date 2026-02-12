@@ -1,68 +1,56 @@
 # My NSCLC Project
 
-## Abstract
-This repository contains analysis code and derived outputs for a non–small cell lung cancer (NSCLC) study integrating pseudotime and cell–cell communication analyses. The project aggregates reproducible scripts, processed data artifacts, and figures intended for exploratory and publication-oriented workflows. The repository is organized to support transparent inspection of analysis steps and results.
+## Overview
+This repository hosts R scripts and supporting artifacts for a non-small cell lung cancer (NSCLC, LUAD-focused) research workflow. The scripts cover GEO/TCGA preprocessing, differential analysis, enrichment, immune infiltration, survival modeling, and downstream visualization.
 
-## Project Scope
-- Pseudotime analysis of single-cell or spatially resolved datasets.
-- Cell–cell communication inference and visualization.
-- Integration of intermediate outputs into publication-ready figures and tables.
+## Key R Scripts
+- GEO microarray processing: [01.GEO芯片处理.R](01.GEO芯片处理.R)
+- TCGA-LUAD processing: [02.TCGA_LUAD.R](02.TCGA_LUAD.R)
+- Common genes and enrichment: [03.Common Genes & Enrichment analysis.R](03.Common%20Genes%20&%20Enrichment%20analysis.R)
+- Immune infiltration analysis: [04.Immune_Infiltration.R](04.Immune_Infiltration.R)
+- Cox and survival modeling: [COX.R](COX.R) and [new_plot/COX regression.R](new_plot/COX%20regression.R)
+- GEO clinical metadata: [GEO_clinical_data.R](GEO_clinical_data.R)
+- GO/KEGG summarization: [GOKEGG_comprehensive.R](GOKEGG_comprehensive.R)
+- Ferritin-related analysis: [Ferr_differ_in_TCGA.R](Ferr_differ_in_TCGA.R)
+- Binary classification model: [二分类模型.R](二分类模型.R)
+- Integrated GSE189357 workflow: [GSE189357/NSCLC_all in one.R](GSE189357/NSCLC_all%20in%20one.R)
+- GSE189357 visualization: [GSE189357/UMAP_plot.R](GSE189357/UMAP_plot.R)
 
-## Repository Structure
-- [CellChat_with_Pseudo.R](CellChat_with_Pseudo.R): Main script combining CellChat with pseudotime outputs.
-- [NSCLC_all in one.R](NSCLC_all%20in%20one.R): End-to-end analysis script.
-- data/: Raw or curated datasets used in the analyses.
-- deep_pseudotime_cellchat_analysis/: Processed outputs and figures for integrated analysis.
-- pseudotime_analysis/: Pseudotime analysis pipeline outputs.
-- results/: Aggregated plots, tables, and publication figures.
-- Rplot/: Plot exports (legacy and intermediate).
+## Repository Layout
+- [Mime-main/](Mime-main/): Packaged methods and utilities used across analyses.
+- [new_plot/](new_plot/): Plotting scripts and outputs for figures and tables.
+- [Plot/](Plot/): Additional plotting outputs and legacy figures.
+- [Date_13.08.25/](Date_13.08.25/): Time-stamped snapshots and related plots.
+- [GSE189357/](GSE189357/): Dataset-specific analysis scripts and results.
 
-## Methods (High-Level)
-1. Data preprocessing and quality control.
-2. Pseudotime inference and trajectory characterization.
-3. Cell–cell communication analysis.
-4. Integration of pseudotime and communication outputs.
-5. Visualization and preparation of publication figures.
+## Notes
+- Scripts assume local data files present in this workspace; adjust file paths as needed.
+- Add package versioning (e.g., `renv`) if strict reproducibility is required.
 
-## Required R Packages (Indicative)
-The following packages are commonly used in this workflow. Update this list to match the exact libraries loaded in the scripts.
+## Dependencies (Detected in Scripts)
+Core packages commonly used across workflows:
+- Seurat, SeuratObject, SingleCellExperiment, monocle, monocle3, slingshot
+- CellChat, GSVA, GSEABase, clusterProfiler, org.Hs.eg.db, DOSE, ReactomePA
+- limma, edgeR, DESeq2, survival, survminer, timeROC
+- dplyr, tidyr, tidyverse, data.table, readr, readxl, tibble
+- ggplot2, patchwork, cowplot, ggpubr, ggforce, ggrepel, ggsci
 
-- Seurat
-- SingleCellExperiment
-- monocle3
-- slingshot
-- CellChat
-- ggplot2
-- patchwork
-- dplyr
-- tidyr
-- data.table
-- readr
-
-## Reproducibility
-This repository contains derived artifacts in addition to scripts. To reproduce the analyses:
-1. Ensure R (and required packages) are installed.
-2. Execute the primary scripts in order:
-   - [NSCLC_all in one.R](NSCLC_all%20in%20one.R)
-   - [CellChat_with_Pseudo.R](CellChat_with_Pseudo.R)
-3. Outputs will be written to the corresponding results/ folders.
-
-> Note: Package versions, hardware requirements, and data access constraints may affect reproducibility. If needed, add an R session info file or `renv` snapshot for full provenance.
-
-## Data Availability
-- Raw data: Not included in this repository.
-- Processed data and figures: Included under analysis-specific directories.
-
-If you require raw data or access instructions, contact the project owner.
-
-## Results
-Key outputs are stored under:
-- results/plots/ (visualizations)
-- results/tables/ (summary tables)
-- results/publication_figures/ (publication-ready figures)
-
-## Citation
-If you use or build on this work, please cite appropriately. Add a formal citation entry here when available.
+Extended packages referenced in the scripts:
+- aorsf, aplot, assertthat, BART, beepr, BiocManager, BiocParallel, bitops, broom
+- cancerclass, caret, CCA, celldex, circlize, clustree, compareC, ComplexHeatmap, corrplot
+- COSG, CoxBoost, DALEX, depen, doParallel, easyTCGA, enrichplot, factoextra, fastAdaboost
+- fastSave, forestplot, forestploter, future, future.apply, gbm, GEOquery, ggbreak
+- ggcorrplot, ggDCA, ggpol, ggsignif, glmnet, GOSemSim, gplots, grid, gridExtra
+- harmony, Hmisc, igraph, immunedeconv, IOBR, irGSEA, kableExtra, kernlab, lme4
+- lmerTest, magrittr, MASS, Matrix, matrixStats, mboost, meta, Metrics, MIME, Mime, Mime1
+- miscTools, mixOmics, mixtools, Nebulosa, neuralnet, NeuralNetTools, obliqueRSF
+- ontologyIndex, openxlsx, parallel, party, partykit, pec, pheatmap, plotrix, plsRcox
+- plsRglm, plyr, ppcor, preprocessCore, presto, pROC, qs, randomcoloR, randomForest
+- randomForestSRC, rattle, RColorBrewer, Rcpp, RCurl, recipes, regplot, remotes, reshape2
+- rms, ROCit, ROCR, rpart, rpart.plot, scales, scater, scattermore, scatterplot3d
+- scde, SCP, SCpubr, seqinr, SingleR, snowfall, sparkline, sparrow, starTracer, stats
+- stringi, stringr, superpc, survivalROC, survivalsvm, sva, testthat, tradeSeq, tricycle
+- UCell, UpSetR, venn, VennDiagram, VIM, viridis, visNetwork, xgboost
 
 ## License
 Specify the license for this repository here.
